@@ -30,64 +30,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  var textoButton="Button";
+  var textoButton = "Button";
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-
           children: [
-            Text("Texto 01",style:TextStyle(color:Colors.red,fontSize:20)),
-            Text("Texto 02",style:TextStyle(color:Colors.blueAccent,fontSize:25)),
+            const Text("Texto 01",
+                style: TextStyle(color: Colors.red, fontSize: 20)),
+            const Text("Texto 02",
+                style: TextStyle(color: Colors.blueAccent, fontSize: 25)),
             ElevatedButton(
-
-              child:
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children:
-                      [
-                        Icon(
-                            Icons.audiotrack,
-                            size:10,
+              style: ButtonStyle(
+                  maximumSize:
+                      MaterialStateProperty.all(const Size(200.0, 100.0))),
+              child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(
+                          Icons.audiotrack,
+                          size: 10,
                         ),
                         Text(textoButton)
-                      ]
-                  ),
-
+                      ])),
               onPressed: () {
+                // ignore: avoid_print
                 print('Pressed');
                 setState(() {
-                  // This call to setState tells the Flutter framework that something has
-                  // changed in this State, which causes it to rerun the build method below
-                  // so that the display can reflect the updated values. If we changed
-                  // _counter without calling setState(), then the build method would not be
-                  // called again, and so nothing would appear to happen.
-                  textoButton="Pulsado";
+                  if (textoButton == "Pulsado") {
+                    textoButton = "Pulsar";
+                  } else {
+                    textoButton = "Pulsado";
+                  }
                 });
-
-              },)
-
-
+              },
+            )
           ],
         ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
